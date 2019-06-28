@@ -21,8 +21,10 @@ android {
 
 dependencies {
     implementation "androidx.appcompat:appcompat:$app_compat_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha06"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.github.hadilq.liveevent:liveevent:$liveevent_version"
