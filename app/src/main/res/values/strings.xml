@@ -16,4 +16,6 @@
 <resources>
     <string name="app_name">Github Query</string>
     <string name="search">Search</string>
+    <string name="hint_text">Digita aí e eu vejo o que faço</string>
+    <string name="error_text">Acho que deu ruim..</string>
 </resources>
