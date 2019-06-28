@@ -4,23 +4,26 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     private val searchFieldEditText by lazy { findViewById<EditText>(R.id.search_field) }
-    private val searchURLTextView by lazy { findViewById<TextView>(R.id.search_url_textview) }
+    private val resultsRecyclerView by lazy { findViewById<RecyclerView>(R.id.results_recyclerview) }
     private lateinit var searchViewModel: SearchViewModel
+    private var searchResultsAdapter = SearchResultsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        setupRecyclerView()
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
         searchViewModel.searchResultsLiveData.observe(this, Observer {
-
+            searchResultsAdapter.results.clear()
+            searchResultsAdapter.results.addAll(it.items)
+            searchResultsAdapter.notifyDataSetChanged()
         })
         searchViewModel.errorLiveEvent.observe(this, Observer {
 
@@ -39,6 +42,12 @@ class MainActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun setupRecyclerView() {
+        resultsRecyclerView.apply {
+            adapter = searchResultsAdapter
+        }
     }
 
 }

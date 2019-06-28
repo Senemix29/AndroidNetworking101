@@ -18,6 +18,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -31,24 +32,11 @@
         android:hint="Digita aí e eu vejo o que faço"
         android:textSize="22sp" />
 
-    <TextView
-        android:id="@+id/search_url_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Vou mostrar a URL de busca aqui, valeu irmão?!"
-        android:textSize="22sp" />
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="8dp"
+        android:id="@+id/results_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
-
-        <TextView
-            android:id="@+id/search_results_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Aqui eu vou mostrar o resultado.. se eu quiser!"
-            android:textSize="18sp" />
-    </ScrollView>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </LinearLayout>
