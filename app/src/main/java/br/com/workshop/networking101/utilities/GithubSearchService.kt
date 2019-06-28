@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 interface GithubSearchService {
 
-    @GET
+    @GET("search/repositories")
     fun searchRespositories(@Query(PARAM_QUERY) query: String,
                             @Query(PARAM_SORT) sortBy: String = SORT_BY_STARS): Call<SearchResult>
 }
