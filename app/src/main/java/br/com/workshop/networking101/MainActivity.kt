@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    //DONE - 9 Sobrescreva os callbacks de menu e chamar este método ao clicar no item de busca no menu.
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
         return true
@@ -36,9 +35,6 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
     
-
-    //DONE - 8 Criar um método para executar a AsyncTask, utilizando o texto digitado no searchFieldEditText, para gerar uma URL.
-    // e exibir a URL criada com os parametros de busca no searchURLTextView.
     private fun makeGithubSearchQuery() {
         val githubQuery = searchFieldEditText.text.toString()
         val githubSearchUrl = NetworkUtils.buildUrl(githubQuery)
@@ -48,8 +44,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //DONE - 6 Criar uma AsyncTask para realizar as requisições à API do Github.
-    //DONE - 7 Ao término da execução, setar no searchResultsTextView o retorno da requisição, caso o resultado seja válido.
     inner class GithubQueryTask : AsyncTask<URL, Void, String>() {
 
         override fun doInBackground(vararg params: URL): String? {
