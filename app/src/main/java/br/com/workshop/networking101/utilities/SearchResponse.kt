@@ -1,4 +1,4 @@
-package br.com.workshop.networking101
+package br.com.workshop.networking101.utilities
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,6 +1,5 @@
 package br.com.workshop.networking101.utilities
 
-import br.com.workshop.networking101.SearchResult
 import br.com.workshop.networking101.utilities.GithubApi.PARAM_QUERY
 import br.com.workshop.networking101.utilities.GithubApi.PARAM_SORT
 import br.com.workshop.networking101.utilities.GithubApi.SORT_BY_STARS
