@@ -13,6 +13,7 @@ import retrofit2.Response
 class SearchViewModel : ViewModel() {
     val searchResultsLiveData = MutableLiveData<SearchResult>()
     val errorLiveEvent = LiveEvent<Boolean>()
+
     fun makeSearch(query: String) {
         GithubApi.searchService.searchRespositories(query).enqueue(object : Callback<SearchResult> {
             override fun onResponse(call: Call<SearchResult>, response: Response<SearchResult>) {
