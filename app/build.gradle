@@ -17,6 +17,10 @@ android {
             minifyEnabled false
         }
     }
+    compileOptions {
+        targetCompatibility = '1.8'
+        sourceCompatibility = '1.8'
+    }
 }
 
 dependencies {
@@ -29,6 +33,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.github.hadilq.liveevent:liveevent:$liveevent_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_loggin_interceptor_version"
 }
 repositories {
     mavenCentral()
