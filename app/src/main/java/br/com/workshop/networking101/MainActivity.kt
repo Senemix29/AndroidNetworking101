@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
+import br.com.workshop.networking101.utilities.SearchItem
 
 class MainActivity : AppCompatActivity() {
     private val searchFieldEditText by lazy { findViewById<EditText>(R.id.search_field) }
@@ -28,10 +29,7 @@ class MainActivity : AppCompatActivity() {
         setupRecyclerView()
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
         searchViewModel.searchResultsLiveData.observe(this, Observer {
-            showSuccessState()
-            searchResultsAdapter.results.clear()
-            searchResultsAdapter.results.addAll(it.items)
-            searchResultsAdapter.notifyDataSetChanged()
+            showSuccessState(it.items)
         })
 
         searchViewModel.errorLiveEvent.observe(this, Observer {
@@ -45,10 +43,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val itemThatWasClickedId = item.itemId
-        if (itemThatWasClickedId == R.id.action_search) {
-            showLoadingState()
-            searchViewModel.makeSearch(searchFieldEditText.text.toString())
+        if (item.itemId == R.id.action_search) {
+            val query = searchFieldEditText.text.toString()
+            if (!query.isBlank()) {
+                showLoadingState()
+                searchViewModel.makeSearch(query)
+            }
             return true
         }
         return super.onOptionsItemSelected(item)
@@ -60,19 +60,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showErrorState(){
+    private fun showErrorState() {
         progressBar.visibility = GONE
         errorTextView.visibility = VISIBLE
         resultsRecyclerView.visibility = GONE
     }
 
-    private fun showSuccessState(){
+    private fun showSuccessState(items: List<SearchItem>) {
         progressBar.visibility = GONE
         errorTextView.visibility = GONE
         resultsRecyclerView.visibility = VISIBLE
+
+        searchResultsAdapter.results.clear()
+        searchResultsAdapter.results.addAll(items)
+        searchResultsAdapter.notifyDataSetChanged()
     }
 
-    private fun showLoadingState(){
+    private fun showLoadingState() {
         progressBar.visibility = VISIBLE
         errorTextView.visibility = GONE
         resultsRecyclerView.visibility = GONE
